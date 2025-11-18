@@ -8,7 +8,6 @@ import { TakePayment } from './pages/TakePayment';
 import { Settings } from './pages/Settings';
 import { DeposytDocs } from './pages/DepositDocs';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import { GoldenParallaxBackground } from './components/GoldenParallaxBackground';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -123,7 +122,6 @@ function App() {
   return (
     <BrowserRouter>
       <div className="relative min-h-screen bg-[#050608] text-white">
-        <GoldenParallaxBackground />
         <AnimatedRoutes />
       </div>
     </BrowserRouter>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Header } from '../components/Header';
+import { GoldenWaveBackground } from '../components/GoldenWaveBackground';
 
 const cardsContainer = {
   hidden: { opacity: 0, y: 24 },
@@ -31,12 +32,13 @@ export function Landing() {
         <Header />
 
         <motion.section
-          className="relative pt-24 pb-16"
+          className="relative overflow-hidden pt-24 pb-16"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-        <div className="mx-auto max-w-4xl px-4 text-center">
+        <GoldenWaveBackground />
+        <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl tracking-tight text-white">
             Get paid for tattoos the easy way.
           </h1>
