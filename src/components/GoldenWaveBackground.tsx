@@ -1,13 +1,35 @@
 import React from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 
 export const GoldenWaveBackground: React.FC = () => {
+  const { scrollY } = useScroll();
+
+  const layer1Y = useTransform(scrollY, [0, 1000], [0, 150]);
+  const layer2Y = useTransform(scrollY, [0, 1000], [0, 250]);
+  const layer3Y = useTransform(scrollY, [0, 1000], [0, 350]);
+
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute top-0 left-0 h-96 w-full bg-gradient-to-b from-yellow-500/50 via-amber-400/30 to-transparent blur-3xl" />
+    <div className="pointer-events-none fixed inset-0 overflow-hidden">
+      <motion.div
+        style={{ y: layer1Y }}
+        className="absolute top-0 left-[-10%] h-[600px] w-[120%] opacity-40"
+      >
+        <div className="h-full w-full bg-gradient-to-br from-yellow-400 via-amber-300 to-yellow-500 blur-3xl" />
+      </motion.div>
 
-      <div className="absolute top-20 left-[-20%] h-80 w-[140%] bg-gradient-to-r from-yellow-400/40 via-amber-300/50 to-yellow-500/40 blur-3xl rounded-[100%]" />
+      <motion.div
+        style={{ y: layer2Y }}
+        className="absolute top-40 right-[-15%] h-[700px] w-[130%] opacity-30"
+      >
+        <div className="h-full w-full bg-gradient-to-bl from-amber-500 via-yellow-400 to-amber-300 blur-3xl" />
+      </motion.div>
 
-      <div className="absolute top-40 right-[-10%] h-96 w-[120%] bg-gradient-to-l from-amber-500/30 via-yellow-400/40 to-transparent blur-3xl" />
+      <motion.div
+        style={{ y: layer3Y }}
+        className="absolute top-80 left-[-20%] h-[800px] w-[140%] opacity-25"
+      >
+        <div className="h-full w-full bg-gradient-to-tr from-yellow-300 via-amber-400 to-yellow-500 blur-3xl" />
+      </motion.div>
     </div>
   );
 };

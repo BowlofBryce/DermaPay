@@ -28,16 +28,17 @@ export function Landing() {
 
   return (
     <div className="min-h-screen relative">
+      <GoldenWaveBackground />
+
       <div className="relative" style={{ zIndex: 10 }}>
         <Header />
 
         <motion.section
-          className="relative overflow-hidden pt-24 pb-16"
+          className="relative pt-24 pb-16"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-        <GoldenWaveBackground />
         <div className="relative z-10 mx-auto max-w-4xl px-4 text-center">
           <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl tracking-tight text-white">
             Get paid for tattoos the easy way.
