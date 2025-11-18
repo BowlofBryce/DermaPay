@@ -16,7 +16,8 @@ Deno.serve(async (req: Request) => {
   }
 
   try {
-    const supabaseClient = createClient(
+    // Create client with user's token for authentication
+    const authClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_ANON_KEY") ?? "",
       {
@@ -26,10 +27,11 @@ Deno.serve(async (req: Request) => {
       }
     );
 
-    const { data: { user }, error: userError } = await supabaseClient.auth.getUser();
+    // Verify user is authenticated
+    const { data: { user }, error: userError } = await authClient.auth.getUser();
     if (userError || !user) {
       return new Response(
-        JSON.stringify({ error: "Unauthorized" }),
+        JSON.stringify({ error: "Not authenticated" }),
         {
           status: 401,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
@@ -37,13 +39,20 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    const { data: merchant } = await supabaseClient
+    // Create service role client for database operations (bypasses RLS)
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL") ?? "",
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+    );
+
+    // Get merchant for this user
+    const { data: merchant, error: merchantError } = await supabase
       .from("merchants")
       .select("*")
       .eq("user_id", user.id)
-      .single();
+      .maybeSingle();
 
-    if (!merchant) {
+    if (merchantError || !merchant) {
       return new Response(
         JSON.stringify({ error: "Merchant not found" }),
         {
@@ -65,18 +74,22 @@ Deno.serve(async (req: Request) => {
       );
     }
 
+    // Calculate customer charged amount
     let customerChargedAmount = amount;
     if (feePayer === "customer") {
       customerChargedAmount = Math.round(amount * 1.03);
     }
 
+    // Generate secure payment ID and short link
     const paymentId = crypto.randomUUID();
     const shortId = paymentId.substring(0, 8);
     const checkoutUrl = `https://pay.dermapay.com/${shortId}`;
 
-    const { data: payment, error: paymentError } = await supabaseClient
+    // Create payment in database
+    const { data: payment, error: paymentError } = await supabase
       .from("payments")
       .insert({
+        id: paymentId,
         merchant_id: merchant.id,
         amount,
         fee_payer: feePayer,
@@ -104,6 +117,8 @@ Deno.serve(async (req: Request) => {
       JSON.stringify({
         id: payment.id,
         checkoutUrl,
+        amount,
+        customerChargedAmount,
       }),
       {
         headers: { ...corsHeaders, "Content-Type": "application/json" },

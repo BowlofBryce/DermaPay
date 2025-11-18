@@ -5,11 +5,14 @@ const DEMO_PAYMENTS: Payment[] = [
   {
     id: 'pmt_1',
     merchant_id: 'demo-merchant',
+    deposyt_payment_id: null,
     amount: 25000,
+    customer_charged_amount: 25750,
     status: 'paid',
     mode: 'in_person',
     fee_payer: 'customer',
     note: 'Half sleeve deposit',
+    checkout_url: 'https://pay.dermapay.com/demo1',
     client_name: 'Sarah Johnson',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -17,11 +20,14 @@ const DEMO_PAYMENTS: Payment[] = [
   {
     id: 'pmt_2',
     merchant_id: 'demo-merchant',
+    deposyt_payment_id: null,
     amount: 8000,
+    customer_charged_amount: 8000,
     status: 'pending',
     mode: 'link',
     fee_payer: 'merchant',
     note: 'Flash piece - walk-in',
+    checkout_url: 'https://pay.dermapay.com/demo2',
     client_name: 'Mike Chen',
     created_at: new Date(Date.now() - 90 * 60 * 1000).toISOString(),
     updated_at: new Date(Date.now() - 90 * 60 * 1000).toISOString(),
@@ -29,11 +35,14 @@ const DEMO_PAYMENTS: Payment[] = [
   {
     id: 'pmt_3',
     merchant_id: 'demo-merchant',
+    deposyt_payment_id: null,
     amount: 15000,
+    customer_charged_amount: 15450,
     status: 'failed',
     mode: 'in_person',
     fee_payer: 'customer',
     note: 'Touch-up session',
+    checkout_url: 'https://pay.dermapay.com/demo3',
     client_name: 'Alex Rivera',
     created_at: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
     updated_at: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
@@ -53,7 +62,6 @@ const DEMO_MERCHANT: Merchant = {
   monthly_volume: '10000-50000',
   default_fee_payer: 'customer',
   created_at: new Date().toISOString(),
-  updated_at: new Date().toISOString(),
 };
 
 export async function createMerchant(data: {
