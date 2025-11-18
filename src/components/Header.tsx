@@ -42,7 +42,7 @@ export function Header() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
           <img
             src="/src/assets/Untitled 56.svg"
