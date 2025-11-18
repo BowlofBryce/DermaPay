@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+@keyframes wave-float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) scale(1.05);
+  }
+}
+
+@keyframes wave-float-2 {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(40px) scale(1.08);
+  }
+}
+
+@keyframes wave-float-3 {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.03);
+  }
+}
+
+.golden-wave {
+  will-change: transform;
+  transition: transform 0.1s linear;
+}
+
+.golden-wave-1 {
+  animation: wave-float 8s ease-in-out infinite;
+}
+
+.golden-wave-2 {
+  animation: wave-float-2 10s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.golden-wave-3 {
+  animation: wave-float-3 12s ease-in-out infinite;
+  animation-delay: 4s;
+}
