@@ -5,6 +5,7 @@ import { getCurrentMerchant, getPayments } from '../lib/api';
 import { signOut } from '../lib/auth';
 import { Payment, Merchant } from '../lib/supabase';
 import { Settings } from 'lucide-react';
+import { GoldenWaveBackground } from '../components/GoldenWaveBackground';
 
 export function Dashboard() {
   const navigate = useNavigate();
@@ -73,8 +74,9 @@ export function Dashboard() {
   const isDemo = merchant?.id === 'demo-merchant';
 
   return (
-    <div className="min-h-screen bg-[#050608] pb-12">
-      <div className="max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-[#050608] pb-12 relative">
+      <GoldenWaveBackground />
+      <div className="max-w-4xl mx-auto px-4 py-8 relative z-10">
         {isDemo && (
           <div className="mb-6 rounded-xl border border-yellow-400/40 bg-yellow-500/10 px-4 py-3 text-sm text-yellow-100">
             You are viewing a demo account. Data shown here is example data only.
