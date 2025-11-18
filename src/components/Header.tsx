@@ -47,7 +47,7 @@ export function Header() {
           <img
             src="/src/assets/Untitled 56.svg"
             alt="DermaPay"
-            className="h-8 brightness-0 invert"
+            className="h-16 brightness-0 invert"
           />
         </div>
 

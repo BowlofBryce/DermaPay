@@ -43,7 +43,7 @@ export function Login() {
             <img
               src="/src/assets/Untitled 56.svg"
               alt="DermaPay"
-              className="h-12 brightness-0 invert"
+              className="h-24 brightness-0 invert"
             />
           </div>
           <h1 className="text-3xl font-bold text-[#f9fafb] mb-8 text-center">Log In</h1>
