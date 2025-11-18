@@ -1,47 +1,13 @@
 import React from "react";
-import { motion, useScroll, useTransform } from "motion/react";
 
 export const GoldenWaveBackground: React.FC = () => {
-  const { scrollY } = useScroll();
-
-  const layer1Y = useTransform(scrollY, [0, 600], [0, 20]);
-  const layer2Y = useTransform(scrollY, [0, 600], [0, 40]);
-  const layer3Y = useTransform(scrollY, [0, 600], [0, 60]);
-
-  const waveShape =
-    "polygon(0% 70%, 15% 45%, 35% 60%, 55% 35%, 75% 55%, 100% 30%, 100% 100%, 0% 100%)";
-
   return (
-    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-      <motion.div
-        style={{ y: layer1Y }}
-        className="absolute -top-28 left-[-10%] h-64 w-[130%] opacity-70"
-      >
-        <div
-          className="h-full w-full bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 blur-3xl"
-          style={{ clipPath: waveShape }}
-        />
-      </motion.div>
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="absolute top-0 left-0 h-96 w-full bg-gradient-to-b from-yellow-500/50 via-amber-400/30 to-transparent blur-3xl" />
 
-      <motion.div
-        style={{ y: layer2Y }}
-        className="absolute top-16 left-[-15%] h-72 w-[140%] opacity-55"
-      >
-        <div
-          className="h-full w-full bg-gradient-to-r from-yellow-500 via-yellow-300 to-amber-400 blur-3xl"
-          style={{ clipPath: waveShape }}
-        />
-      </motion.div>
+      <div className="absolute top-20 left-[-20%] h-80 w-[140%] bg-gradient-to-r from-yellow-400/40 via-amber-300/50 to-yellow-500/40 blur-3xl rounded-[100%]" />
 
-      <motion.div
-        style={{ y: layer3Y }}
-        className="absolute bottom-[-40px] left-[-10%] h-64 w-[130%] opacity-45"
-      >
-        <div
-          className="h-full w-full bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 blur-3xl"
-          style={{ clipPath: waveShape }}
-        />
-      </motion.div>
+      <div className="absolute top-40 right-[-10%] h-96 w-[120%] bg-gradient-to-l from-amber-500/30 via-yellow-400/40 to-transparent blur-3xl" />
     </div>
   );
 };
