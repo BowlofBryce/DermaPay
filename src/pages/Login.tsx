@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { signIn } from '../lib/auth';
+import logo from '../assets/Untitled 56.svg';
 
 export function Login() {
   const navigate = useNavigate();
@@ -41,7 +42,7 @@ export function Login() {
         <div className="bg-gray-900 p-8 rounded-xl">
           <div className="flex justify-center mb-6">
             <img
-              src="/src/assets/Untitled 56.svg"
+              src={logo}
               alt="DermaPay"
               className="h-24 brightness-0 invert"
             />

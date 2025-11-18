@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
+import logo from '../assets/Untitled 56.svg';
 
 export function Header() {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export function Header() {
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-2">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
           <img
-            src="/src/assets/Untitled 56.svg"
+            src={logo}
             alt="DermaPay"
             className="h-16 brightness-0 invert"
           />

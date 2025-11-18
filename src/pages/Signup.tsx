@@ -6,6 +6,7 @@ import { Select } from '../components/Select';
 import { ProgressBar } from '../components/ProgressBar';
 import { signUp } from '../lib/auth';
 import { createMerchant, createBankAccount } from '../lib/api';
+import logo from '../assets/Untitled 56.svg';
 
 export function Signup() {
   const navigate = useNavigate();
@@ -119,7 +120,7 @@ export function Signup() {
         <div className="bg-gray-900 p-8 rounded-xl">
           <div className="flex justify-center mb-6">
             <img
-              src="/src/assets/Untitled 56.svg"
+              src={logo}
               alt="DermaPay"
               className="h-24 brightness-0 invert"
             />
