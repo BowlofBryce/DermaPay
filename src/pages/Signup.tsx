@@ -117,6 +117,13 @@ export function Signup() {
     <div className="min-h-screen bg-[#050608] py-12 px-4">
       <div className="max-w-lg mx-auto">
         <div className="bg-gray-900 p-8 rounded-xl">
+          <div className="flex justify-center mb-6">
+            <img
+              src="/src/assets/Untitled 56.svg"
+              alt="DermaPay"
+              className="h-12 brightness-0 invert"
+            />
+          </div>
           <ProgressBar currentStep={step} totalSteps={3} />
 
           {error && (

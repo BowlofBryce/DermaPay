@@ -44,8 +44,11 @@ export function Header() {
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
-          <div className="h-8 w-8 rounded-full bg-gradient-to-br from-yellow-400 to-amber-500" />
-          <span className="font-heading text-lg tracking-tight text-[#f9fafb]">DermaPay</span>
+          <img
+            src="/src/assets/Untitled 56.svg"
+            alt="DermaPay"
+            className="h-8 brightness-0 invert"
+          />
         </div>
 
         <nav className="hidden md:flex items-center gap-6">

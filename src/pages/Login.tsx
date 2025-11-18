@@ -39,6 +39,13 @@ export function Login() {
     <div className="min-h-screen bg-[#050608] flex items-center justify-center px-4">
       <div className="max-w-md w-full">
         <div className="bg-gray-900 p-8 rounded-xl">
+          <div className="flex justify-center mb-6">
+            <img
+              src="/src/assets/Untitled 56.svg"
+              alt="DermaPay"
+              className="h-12 brightness-0 invert"
+            />
+          </div>
           <h1 className="text-3xl font-bold text-[#f9fafb] mb-8 text-center">Log In</h1>
 
           {error && (
