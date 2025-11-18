@@ -182,6 +182,30 @@ export async function createPaymentViaAPI(input: {
   note?: string;
   feePayer: 'merchant' | 'customer';
 }) {
+  const demoUser = localStorage.getItem('demoUser');
+
+  if (demoUser) {
+    // Demo mode: create a mock payment locally
+    const paymentId = crypto.randomUUID();
+    const shortId = paymentId.substring(0, 8);
+    const checkoutUrl = `https://pay.dermapay.com/${shortId}`;
+
+    let customerChargedAmount = input.amount;
+    if (input.feePayer === 'customer') {
+      customerChargedAmount = Math.round(input.amount * 1.03);
+    }
+
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 800));
+
+    return {
+      id: paymentId,
+      checkoutUrl,
+      amount: input.amount,
+      customerChargedAmount,
+    };
+  }
+
   const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/create-payment`;
 
   const { data: { session } } = await supabase.auth.getSession();
